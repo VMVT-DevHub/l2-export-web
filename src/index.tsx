@@ -17,7 +17,7 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
+          <GlobalStyle theme={theme} />
           <App />
         </ThemeProvider>
       </PersistGate>

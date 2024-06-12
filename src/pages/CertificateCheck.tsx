@@ -75,7 +75,6 @@ const CertificateCheck = () => {
                         <SelectField
                           options={['A', 'B', 'LT']}
                           getOptionLabel={(option) => option}
-                          getInputValue={(option) => option}
                           onChange={(value) => setFieldValue('countryCode', value)}
                           value={values.countryCode}
                           placeholder="xx"

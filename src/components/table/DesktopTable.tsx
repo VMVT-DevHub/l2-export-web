@@ -54,7 +54,7 @@ const DesktopTable = ({
                   const item = row[label] || '-';
                   const width = columns[label]?.width || TableItemWidth.LARGE;
                   return (
-                    <TD width={width} key={`tr-td-${i}`}>
+                    <TD key={`tr-td-${i}`}>
                       {item}
                     </TD>
                   );
@@ -91,7 +91,7 @@ const DesktopTable = ({
               const width = columns[key]?.width || TableItemWidth.LARGE;
 
               return (
-                <TH width={width} key={`large-th-${i}`}>
+                <TH key={`large-th-${i}`}>
                   {item}
                 </TH>
               );
