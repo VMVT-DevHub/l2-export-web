@@ -1,0 +1,9 @@
+{
+  "certificateCheck": {
+    "title": "Sertifikatų tikrinimas",
+    "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą."
+  },
+  "validation": {
+    "required": "Privalomas laukas"
+  }
+}
