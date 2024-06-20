@@ -1,9 +1,7 @@
 name: Publish to production
 
 on:
-  push:
-    branches:
-      - prod
+  workflow_dispatch:
 
 jobs:
   build:
