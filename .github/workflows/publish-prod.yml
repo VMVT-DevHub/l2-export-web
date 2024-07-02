@@ -43,6 +43,7 @@ jobs:
         response=$(curl -s $API_URL1)
         echo "Response Web1: $response"
         response=$(curl -s $API_URL2)
+        echo "Response Web2: $response"
       env:
         API_URL: ${{ secrets.PROD_TRIGGER }}
         API_URL1: ${{ secrets.UI_TRIGGER_PROD1 }}
