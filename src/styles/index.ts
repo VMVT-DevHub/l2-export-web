@@ -1,5 +1,16 @@
+import { Theme } from '@aplinkosministerija/design-system';
 import { createGlobalStyle } from 'styled-components';
-import { ButtonVariants, Theme } from '@aplinkosministerija/design-system';
+
+export enum ButtonVariants {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  TERTIARY = 'tertiary',
+  DANGER = 'danger',
+  DANGER_OUTLINE = 'dangerOutline',
+  TRANSPARENT = 'transparent',
+  ACCENT = 'accent',
+  SUCCESS = 'success',
+}
 
 const COLORS = {
   primary: '#2A4871',
@@ -102,7 +113,13 @@ export const theme: Theme = {
   },
   radius: {
     buttons: 0.4,
+    multiSelectFieldTag: 0.4,
     fields: 0.4,
+  },
+  fontWeight: {
+    fields: 400,
+    fieldLabels: 400,
+    buttons: 400,
   },
   height: {
     buttons: 5.6,
@@ -137,7 +154,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   } 
   h1 {
     font-size: 3.2rem;
-    color: ${theme.colors.text.primary};
+    color: ${theme?.colors?.text?.primary};
   }
   a {
     text-decoration: none;

@@ -1,3 +1,4 @@
+import { DesignSystemProvider } from '@aplinkosministerija/design-system';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
@@ -18,7 +19,9 @@ root.render(
       <PersistGate persistor={persistor}>
         <ThemeProvider theme={theme}>
           <GlobalStyle theme={theme} />
-          <App />
+          <DesignSystemProvider>
+            <App />
+          </DesignSystemProvider>
         </ThemeProvider>
       </PersistGate>
     </Provider>

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import Default from '../layouts/Default';
-import { useTranslation } from 'react-i18next';
 import {
   Button,
-  ButtonVariants,
+  device,
   NumericTextField,
   SelectField,
   TextField,
-  device,
 } from '@aplinkosministerija/design-system';
-import styled from 'styled-components';
-import TabBar from '../components/TabBar';
 import { Form, Formik } from 'formik';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import ErrorBanner from '../components/ErrorBanner';
-import { Heading, Label, Paragraph } from '../components/other/Text';
 import { Padding } from '../components/other/Layout';
+import { Heading, Label, Paragraph } from '../components/other/Text';
+import TabBar from '../components/TabBar';
+import Default from '../layouts/Default';
+import { ButtonVariants } from '../styles';
 import { useCheckCertificate } from '../utils/hooks';
 import { validateCheckCertForm, validateCheckCertFormExport } from '../utils/validation';
 

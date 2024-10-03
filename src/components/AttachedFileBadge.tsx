@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
-import Icon from './other/Icons';
 import { IconName } from '../utils/constants';
+import Icon from './other/Icons';
 
 interface Props {
   text: string;
