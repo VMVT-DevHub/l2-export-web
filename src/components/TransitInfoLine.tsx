@@ -1,7 +1,7 @@
 import styled, { useTheme } from 'styled-components';
+import { IconName } from '../utils/constants';
 import Icon from './other/Icons';
 import { Label, Paragraph } from './other/Text';
-import { IconName } from '../utils/constants';
 
 interface Props {
   exportCompany: string;

@@ -1,28 +1,55 @@
-import React from 'react';
-import Default from '../layouts/Default';
-import styled, { useTheme } from 'styled-components';
-import Icon from '../components/other/Icons';
-import { useTranslation } from 'react-i18next';
-import GoBackButton from '../components/GoBackButton';
-import StatusText, { Status } from '../components/StatusText';
-import { Heading, Label, Paragraph } from '../components/other/Text';
-import TransitInfoLine from '../components/TransitInfoLine';
-import { device } from '../styles';
-import { Padding } from '../components/other/Layout';
-import AttachedFileBadge from '../components/AttachedFileBadge';
-import Table from '../components/table/Table';
+import { Table } from '@aplinkosministerija/design-system';
 import { useLocation } from 'react-router-dom';
-import { Certificate } from '../types';
+import styled, { useTheme } from 'styled-components';
+import AttachedFileBadge from '../components/AttachedFileBadge';
+import GoBackButton from '../components/GoBackButton';
+import Loader from '../components/Loader';
+import { Padding } from '../components/other/Layout';
+import { Heading, Label, Paragraph } from '../components/other/Text';
+import StatusText, { Status } from '../components/StatusText';
+
+import TransitInfoLine from '../components/TransitInfoLine';
+import Default from '../layouts/Default';
+import { device } from '../styles';
+import { Certificate, Load } from '../types';
 import { simpleDate } from '../utils/date';
 import { useCertificateFiles } from '../utils/hooks';
-import Loader from '../components/Loader';
+
+interface LoadInfo {
+  name: string;
+  info: Array<{ sealNumber: string; transportNumber: string }>;
+}
 
 const CertificateInfo = () => {
   const location = useLocation();
   const cert = location.state as Certificate;
   const theme = useTheme();
 
-  const { isLoading, data: files } = useCertificateFiles(cert.id);
+  const { isLoading, data: files } = useCertificateFiles(cert.certificateNumber);
+
+  const mappedLoads: LoadInfo[] = cert?.loads
+    ? Object.values(
+        cert.loads.reduce((acc, { transportType, sealNumber, transportNumber }: Load) => {
+          acc[transportType.id] ||= { name: transportType.title, info: [] };
+          acc[transportType.id].info.push({ sealNumber, transportNumber });
+          return acc;
+        }, {}),
+      )
+    : [];
+
+  const mappedProducts = cert?.products
+    ? cert?.products.map((product) => {
+        const code = product?.prodL4 || product?.prodL3 || product?.prodL2 || product?.prodL1;
+        return {
+          name: product?.name,
+          code,
+          manufacturer: product?.manufacturer?.name,
+          amount: `${product?.amount} ${product?.unit}`,
+          packagesAmount: 0,
+          country: product?.originCertificate,
+        };
+      })
+    : [];
 
   return (
     <Default innerWidth={device.mobileXL}>
@@ -40,44 +67,62 @@ const CertificateInfo = () => {
           </HeadingRow>
           <Date>{cert?.date && simpleDate(cert?.date)}</Date>
           <TransitInfoLine
-            importCompany={cert?.importCompany}
-            importCountry={cert?.importCountry}
-            exportCompany={cert?.exportCompany}
-            exportCountry={cert?.exportCountry}
+            importCompany={'-'}
+            importCountry={cert?.importCountry?.name}
+            exportCompany={cert?.exporter?.name}
+            exportCountry={cert?.exporter?.country?.name}
           />
           <GreyCard>
             <CellRow>
               <Cell>
                 <Label>Sertifikatą pasirašo</Label>
-                <Paragraph>{cert?.signedBy}</Paragraph>
+                <Paragraph>{cert?.issueName}</Paragraph>
               </Cell>
               <Cell>
                 <Label>Teritorinė VMVT</Label>
-                <Paragraph>{cert?.territorialNumber}</Paragraph>
+                <Paragraph>{cert?.issueDepartment}</Paragraph>
               </Cell>
               <Cell>
                 <Label>Išvykimo PVP</Label>
-                <Paragraph>{cert?.departurePVP}</Paragraph>
+                <Paragraph>{cert?.post?.name}</Paragraph>
               </Cell>
               <Cell>
                 <Label>Suteiktas Nr.</Label>
-                <Paragraph>{cert?.grantedNumber}</Paragraph>
-              </Cell>
-              <Cell>
-                <Label>VMVT plomba</Label>
-                <Paragraph>{cert?.sealNumber}</Paragraph>
-              </Cell>
-              <Cell>
-                <Label>Transporto Nr.</Label>
-                <Paragraph>{cert?.transportNumber}</Paragraph>
+                <Paragraph>{cert?.blank}</Paragraph>
               </Cell>
             </CellRow>
+
             <Padding $vertical={10} />
             <Cell>
               <Label>Pastaba</Label>
               <Paragraph>{cert?.notes}</Paragraph>
             </Cell>
           </GreyCard>
+          <AttachmentsRow>
+            <Title>Kroviniai:</Title>
+            {mappedLoads?.length === 0 && <Title>nėra</Title>}
+            <LoadContainer>
+              {mappedLoads.map((load) => {
+                return (
+                  <LoadColumn>
+                    <Title>{load?.name || '-'}</Title>
+                    {load?.info.map((item) => (
+                      <LoadRow>
+                        <LoadInnerRow>
+                          <LoadLabel>Nr.:</LoadLabel>
+                          <LoadValue>{item?.transportNumber || '-'}</LoadValue>
+                        </LoadInnerRow>
+                        <LoadInnerRow>
+                          <LoadLabel>VMVT plomba:</LoadLabel>
+                          <LoadValue>{item?.sealNumber || '-'}</LoadValue>
+                        </LoadInnerRow>
+                      </LoadRow>
+                    ))}
+                  </LoadColumn>
+                );
+              })}
+            </LoadContainer>
+          </AttachmentsRow>
           <AttachmentsRow>
             <Title>Prikabinti dokumentai:</Title>
             {!isLoading && files?.length === 0 && <Title>nėra</Title>}
@@ -87,48 +132,40 @@ const CertificateInfo = () => {
           <Line />
           <FlexStart>
             <Title>Krovinio duomenys:</Title>
-            {!cert?.loads && <Title>nėra</Title>}
+            {!mappedProducts.length && <Title>nėra</Title>}
           </FlexStart>
-          {cert?.loads && (
+          {!!mappedProducts.length && (
             <Table
               columns={{
-                amount: {
-                  label: 'amount',
-                  show: true,
-                },
-                certificate: {
-                  label: 'certificate',
-                  show: true,
-                },
                 code: {
-                  label: 'code',
-                  show: true,
-                },
-                manufacturer: {
-                  label: 'manufacturer',
+                  label: 'Kodas',
                   show: true,
                 },
                 name: {
-                  label: 'name',
+                  label: 'Pavadinimas',
                   show: true,
                 },
-                originCountryCertificate: {
-                  label: 'originCountryCertificate',
+                amount: {
+                  label: 'Kiekis',
                   show: true,
                 },
-                packagesNumber: {
-                  label: 'packagesNumber',
+                packagesAmount: {
+                  label: 'Pakuočių skaičius',
+                  show: true,
+                },
+                manufacturer: {
+                  label: 'Gamintojas',
+                  show: true,
+                },
+                country: {
+                  label: 'Kilmės šalies sertifikatas',
                   show: true,
                 },
               }}
               data={{
-                data: cert?.loads ?? [],
+                data: mappedProducts,
               }}
-              notFoundInfo={{
-                text: 'Not found',
-                url: '',
-                urlText: 'not found',
-              }}
+              notFoundInfo={{}}
             />
           )}
         </Card>
@@ -136,6 +173,43 @@ const CertificateInfo = () => {
     </Default>
   );
 };
+
+const LoadValue = styled.div`
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #192f4e;
+`;
+
+const LoadLabel = styled.div`
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #56606c;
+`;
+
+const LoadInnerRow = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+
+const LoadRow = styled.div`
+  display: flex;
+  gap: 43px;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+const LoadColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const LoadContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
 const Container = styled.div`
   width: 100%;
@@ -181,7 +255,6 @@ const AttachmentsRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 20px 0;
-  align-items: center;
   flex-direction: row;
   gap: 8px;
 `;
@@ -207,6 +280,8 @@ const HeadingRow = styled.div`
 const Title = styled(Label)`
   color: ${({ theme }) => theme.colors.text.heading};
   font-weight: 700;
+  text-align: left;
+  min-width: 150px;
 `;
 
 const FlexStart = styled.div`

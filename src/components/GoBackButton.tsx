@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
-import Icon from './other/Icons';
 import { IconName } from '../utils/constants';
+import Icon from './other/Icons';
 
 interface Props {
   goTo?: string;

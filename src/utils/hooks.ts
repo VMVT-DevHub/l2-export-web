@@ -1,8 +1,8 @@
+import { AxiosError } from 'axios';
 import { useMutation, useQuery } from 'react-query';
-import api, { GetCertificate } from './api';
 import { useNavigate } from 'react-router-dom';
 import { Certificate, CertificateFile } from '../types';
-import { AxiosError } from 'axios';
+import api, { GetCertificate } from './api';
 
 export const useCheckCertificate = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const useCheckCertificate = () => {
   });
 };
 
-export const useCertificateFiles = (id: number) => {
+export const useCertificateFiles = (id: string) => {
   return useQuery<CertificateFile[], AxiosError>({
     queryKey: ['certificates/files', id],
     enabled: Boolean(id),
