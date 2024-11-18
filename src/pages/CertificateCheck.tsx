@@ -14,7 +14,7 @@ import { Padding } from '../components/other/Layout';
 import { Heading, Label, Paragraph } from '../components/other/Text';
 import TabBar from '../components/TabBar';
 import Default from '../layouts/Default';
-import { ButtonVariants } from '../styles';
+import { ButtonVariants, theme } from '../styles';
 import { useCheckCertificate } from '../utils/hooks';
 import { validateCheckCertForm, validateCheckCertFormExport } from '../utils/validation';
 
@@ -72,20 +72,21 @@ const CertificateCheck = () => {
                   <InputWrapper>
                     {selectedTab === FormTabs.ONE && (
                       <SmallFieldWrapper>
-                        <SelectField
+                        <StyledSelectField
                           options={['A', 'B', 'LT']}
                           getOptionLabel={(option) => option}
                           onChange={(value) => setFieldValue('countryCode', value)}
                           value={values.countryCode}
                           placeholder="xx"
                           error={errors.countryCode}
+                          clearable={false}
                         />
                       </SmallFieldWrapper>
                     )}
                     {selectedTab === FormTabs.TWO && (
                       <>
                         <FormLabel>EXPORT.EU.LT</FormLabel>
-                        <SmallFieldWrapper $width={100}>
+                        <SmallFieldWrapper>
                           <TextField
                             onChange={(value) => setFieldValue('year', value)}
                             value={values.year}
@@ -198,8 +199,17 @@ const FieldWrapper = styled.div`
   max-height: 70px;
 `;
 
-const SmallFieldWrapper = styled.div<{ $width?: number }>`
-  width: ${({ $width }) => ($width ? $width : 65)}px;
+const StyledSelectField = styled(SelectField)`
+  div {
+    background-color: ${theme.colors.grey};
+  }
+`;
+
+const SmallFieldWrapper = styled.div`
+  width: 100px;
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `;
 
 export default CertificateCheck;
