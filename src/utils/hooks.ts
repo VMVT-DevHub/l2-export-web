@@ -11,7 +11,7 @@ export const useCheckCertificate = () => {
       return api.getCertificate(props);
     },
     onSuccess: async (data) => {
-      navigate('/cert-info', {
+      navigate('./cert-info', {
         state: data,
       });
     },

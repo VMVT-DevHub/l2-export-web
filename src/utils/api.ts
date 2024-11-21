@@ -18,7 +18,7 @@ export interface GetCertificate extends Omit<Get, 'resource'> {
 
 class Api {
   private AuthApiAxios: AxiosInstance;
-  private readonly proxy: string = '/api';
+  private readonly proxy: string = './api';
 
   constructor() {
     this.AuthApiAxios = Axios.create();

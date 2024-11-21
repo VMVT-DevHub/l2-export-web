@@ -11,6 +11,14 @@ const router = createBrowserRouter([
     path: '/cert-info',
     element: <CertificateInfo />,
   },
+  {
+	path: '/sertifikatai',
+	element: <CertificateCheck />,
+  },
+  {
+	path: '/sertifikatai/cert-info',
+	element: <CertificateInfo />,
+  },
 ]);
 
 export default router;
