@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import CertificateCheck from '../pages/CertificateCheck';
 import CertificateInfo from '../pages/CertificateInfo';
+import LandingPage from '../pages/LandingPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <CertificateCheck />,
+    element: <LandingPage />,
   },
   {
     path: '/cert-info',

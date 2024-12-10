@@ -8,6 +8,8 @@ import App from './App';
 import redux from './state/store';
 import { GlobalStyle, theme } from './styles/index';
 
+const isAppRoute = window.location.pathname.includes('/app');
+if (!isAppRoute) {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const { store, persistor } = redux;
@@ -27,3 +29,4 @@ root.render(
     </Provider>
   </QueryClientProvider>,
 );
+}
