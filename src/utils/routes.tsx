@@ -10,7 +10,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/app',
-    element: null,
+    loader: async () => await fetch(`/app`),
   },
   {
     path: '/cert-info',
