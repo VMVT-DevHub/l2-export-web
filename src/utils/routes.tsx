@@ -9,8 +9,8 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: '/app',
-    loader: async () => await fetch(`/app`),
+    path: '/landing',
+    element: <LandingPage />,
   },
   {
     path: '/cert-info',
