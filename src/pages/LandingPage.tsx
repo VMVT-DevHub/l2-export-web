@@ -122,6 +122,7 @@ const ButtonContainer = styled.div`
     align-items: center;
   }
 `;
+
 const StyledLinkYellow = styled(Link)`
   text-decoration: none;
   color: #192F4E;
@@ -129,6 +130,7 @@ const StyledLinkYellow = styled(Link)`
   font-size: 24px;
   line-height: 32px;
   width: 50%;
+  
   @media ${device.mobileL} {
     width: 100%;
   }
@@ -141,6 +143,9 @@ const ButtonContainerBlue = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:hover {
+    background-color: #0e1a2b;
+   }
 `;
 const ButtonContainerYellow = styled.div`
   background-color: #FCE28D;
@@ -150,6 +155,9 @@ const ButtonContainerYellow = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:hover {
+    background-color: #ffebab;
+   }
 `;
 const StyledHeading = styled(Heading)`
   font-family: Axiforma;
