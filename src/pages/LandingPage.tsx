@@ -13,7 +13,7 @@ const LandingPage = () => {
   return (
     <Div100vh>
       <BackgroundContainer>
-        <Background src='/landingBackground.svg'/>
+        <Background src='./landingBackground.svg'/>
       </BackgroundContainer>
       <Default maxWidth={904} innerWidth={device.mobileXL}>
         <Container>
@@ -47,7 +47,7 @@ const LandingPage = () => {
           </Padding>
         </Container>
         <ImageContainer>
-          <Image src='/l2LandingPage.jpg'/>
+          <Image src='./l2LandingPage.jpg'/>
         </ImageContainer>
       </Default>
     </Div100vh>
