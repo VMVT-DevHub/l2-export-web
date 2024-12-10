@@ -151,6 +151,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
     width: 100vw;
     height: 100vh;
     overflow: auto;
+    overflow-x: hidden;
   } 
   h1 {
     font-size: 3.2rem;

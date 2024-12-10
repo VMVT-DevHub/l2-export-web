@@ -6,4 +6,8 @@ export enum IconName {
   dropdownArrow = 'dropdownArrow',
   backward = 'backward',
   forward = 'forward',
+  continue = 'continue',
+  continueLight = 'continueLight',
+  sertificateInquiry = 'sertificateInquiry',
+  sertificateCheck = 'sertificateCheck',
 }
