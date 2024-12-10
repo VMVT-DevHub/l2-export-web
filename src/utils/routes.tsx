@@ -9,6 +9,10 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
+    path: '/app',
+    element: null,
+  },
+  {
     path: '/cert-info',
     element: <CertificateInfo />,
   },
