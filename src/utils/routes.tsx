@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: '/landing',
+    path: '/sertifikatai/landing',
     element: <LandingPage />,
   },
   {
