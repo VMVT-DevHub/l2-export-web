@@ -25,7 +25,7 @@ const LandingPage = () => {
           </StyledLabel>
           <Padding $top={32}>
             <ButtonContainer>
-              <StyledLinkBlue to="https://test.sertifikatai.vmvt.lt/" target='_parent'>
+              <StyledLinkBlue to="https://test.sertifikatai.vmvt.lt/" target="_parent">
                 <ButtonContainerBlue>
                   <Icon name={IconName.sertificateCheck} />
                   <ButtonTextContainer>
@@ -34,7 +34,7 @@ const LandingPage = () => {
                   </ButtonTextContainer>
                 </ButtonContainerBlue>
               </StyledLinkBlue>
-              <StyledLinkYellow to="https://test.export.vmvt.lt/sertifikatai" target='_parent'">
+              <StyledLinkYellow to="https://test.export.vmvt.lt/sertifikatai" target="_parent">
                 <ButtonContainerYellow>
                   <Icon name={IconName.sertificateInquiry} />
                   <ButtonTextContainer>
