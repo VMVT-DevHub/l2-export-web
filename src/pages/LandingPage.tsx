@@ -1,4 +1,4 @@
-
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Padding } from '../components/other/Layout';
 import { Heading, Label, Paragraph } from '../components/other/Text';
@@ -7,25 +7,28 @@ import { device } from '../styles';
 import { Link } from 'react-router-dom';
 import Icon from '../components/other/Icons'
 import { IconName } from '../utils/constants';
-import Div100vh from 'react-div-100vh';
 
 const LandingPage = () => {
+  const { t } = useTranslation();
   return (
-    <Div100vh>
+    <PageContainer >
       <BackgroundContainer>
         <Background src='./landingBackground.svg'/>
       </BackgroundContainer>
       <Default maxWidth={904} innerWidth={device.mobileXL}>
         <Container>
           <Padding $top={50}>
-            <StyledHeading>Veterinarijos sertifikatų išdavimas</StyledHeading>
+            <StyledHeading>{t('certificateIntro.title')}</StyledHeading>
           </Padding>
-          <StyledLabel>Šiame portale galite pateikti prašymus eksporto sertifikatui gauti
-            ir patikrinti išduoto sertifikato galiojimą
+          <StyledLabel>{t('certificateIntro.subtitle')}
           </StyledLabel>
           <Padding $top={32}>
             <ButtonContainer>
-              <StyledLinkBlue to="https://test.sertifikatai.vmvt.lt/" target="_parent">
+              {t('certificateIntro.title') == "Veterinarijos sertifikatų išdavimas" ?
+              <StyledLinkBlue 
+                to="https://test.sertifikatai.vmvt.lt/" 
+                target="_parent"
+              >
                 <ButtonContainerBlue>
                   <Icon name={IconName.sertificateCheck} />
                   <ButtonTextContainer>
@@ -33,12 +36,16 @@ const LandingPage = () => {
                     <Icon name={IconName.continueLight} />
                   </ButtonTextContainer>
                 </ButtonContainerBlue>
-              </StyledLinkBlue>
-              <StyledLinkYellow to="https://test.export.vmvt.lt/sertifikatai" target="_parent">
+              </StyledLinkBlue> : null}
+              <StyledLinkYellow 
+                to="https://test.export.vmvt.lt/sertifikatai" 
+                target="_parent" 
+                theme={{ singleButton: t('certificateIntro.title') !== "Veterinarijos sertifikatų išdavimas" }}
+              >
                 <ButtonContainerYellow>
                   <Icon name={IconName.sertificateInquiry} />
                   <ButtonTextContainer>
-                    Išduotų sertifikatų tikrinimas
+                  {t('certificateIntro.certificateCheckLink')}
                     <Icon name={IconName.continue} />
                   </ButtonTextContainer>
                 </ButtonContainerYellow>
@@ -50,9 +57,18 @@ const LandingPage = () => {
           <Image src='./l2LandingPage.jpg'/>
         </ImageContainer>
       </Default>
-    </Div100vh>
+    </PageContainer>
   );
 };
+
+const PageContainer = styled.div`
+  height: 100vh;
+  overflow-y: hidden;
+  @media ${device.mobileL}, (max-height: 650px) {
+    overflow-y: scroll;
+
+  }
+`;
 const ImageContainer = styled.div`
   position: relative;
   top: -110px;
@@ -63,7 +79,7 @@ const ImageContainer = styled.div`
     display: none;
   }
   @media ${device.mobileXL} {
-    width: 94vw;
+    width: 98%;
     top: -70px;
   }
 `;
@@ -110,7 +126,7 @@ const StyledLinkBlue = styled(Link)`
   line-height: 32px;
   width: 50%;
   @media ${device.mobileL} {
-    width: 100%;
+    width: 90%;
   }
 `;
 const ButtonContainer = styled.div`
@@ -129,10 +145,9 @@ const StyledLinkYellow = styled(Link)`
   font-family: Axiforma;
   font-size: 24px;
   line-height: 32px;
-  width: 50%;
-  
+  width:${props => props.theme.singleButton ? '436px' : '50%'};
   @media ${device.mobileL} {
-    width: 100%;
+    width: 90%;
   }
 `;
 const ButtonContainerBlue = styled.div`
@@ -165,6 +180,10 @@ const StyledHeading = styled(Heading)`
   font-weight: 700;
   line-height: 64px;
   text-align: start;
+  @media ${device.mobileL} {
+    font-size: 40px;
+    line-height: 58px;
+  }
 `;
 const StyledLabel = styled(Label)`
   font-family: Axiforma;
