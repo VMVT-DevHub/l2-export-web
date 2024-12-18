@@ -1,9 +1,16 @@
 {
   "certificateCheck": {
     "title": "Sertifikatų tikrinimas",
-    "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą."
+    "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą.",
+    "check": "Tikrinti",
+    "validityInfo": "Paieška vykdoma ne senesnėms siuntoms nei 1 metų."
   },
   "validation": {
     "required": "Privalomas laukas"
+  },
+  "certificateIntro": {
+    "title": "Veterinarijos sertifikatų išdavimas",
+    "subtitle": "Šiame portale galite pateikti prašymus eksporto sertifikatui gauti ir patikrinti išduoto sertifikato galiojimą",
+    "certificateCheckLink": "Išduotų sertifikatų tikrinimas"
   }
 }

@@ -1,6 +1,13 @@
 {
   "certificateCheck": {
     "title": "Certificate verification",
-    "subtitle": "Enter the certificate identification number below to verify the certificate."
+    "subtitle": "Enter the certificate identification number below to verify the certificate.",
+    "check": "Check",
+    "validityInfo": "The search is performed for shipments no older than 1 year."
+  },
+  "certificateIntro": {
+    "title": "Issuance of Veterinary Certificates",
+    "subtitle": "On this portal you can check the validity of issued certificates",
+    "certificateCheckLink": "Validity check of issued certificates"
   }
 }

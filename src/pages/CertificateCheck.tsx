@@ -130,10 +130,10 @@ const CertificateCheck = () => {
                     loading={isSubmitting || isLoading}
                     variant={ButtonVariants.PRIMARY}
                   >
-                    Tikrinti
+                    {t('certificateCheck.check')}
                   </Button>
                   <DisclaimerLabel>
-                    Paieška vykdoma ne senesnėms siuntoms nei 1 metų.
+                    {t('certificateCheck.validityInfo')}
                   </DisclaimerLabel>
                 </FormWrapper>
               </Form>
