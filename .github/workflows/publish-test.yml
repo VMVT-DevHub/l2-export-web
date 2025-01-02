@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-    VITE_SERTIFIKATAI_URL: 'https://test.sertifikatai.vmvt.lt/'
-    VITE_EXPORT_URL: 'https://test.export.vmvt.lt/' 
+      VITE_SERTIFIKATAI_URL: https://test.sertifikatai.vmvt.lt/
+      VITE_EXPORT_URL: https://test.export.vmvt.lt/
 
     steps:
       - name: Checkout code
@@ -30,7 +30,7 @@ jobs:
       - name: Build React app
         run: yarn build
         env:
-          VITE_SERTIFIKATAI_URL:  ${{ env.VITE_SERTIFIKATAI_URL }}
+          VITE_SERTIFIKATAI_URL: ${{ env.VITE_SERTIFIKATAI_URL }}
           VITE_EXPORT_URL: ${{ env.VITE_EXPORT_URL }}
 
       - name: Archive artifacts
