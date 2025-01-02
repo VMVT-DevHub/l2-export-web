@@ -26,7 +26,7 @@ const LandingPage = () => {
             <ButtonContainer>
               {t('certificateIntro.title') == "Veterinarijos sertifikatų išdavimas" ?
               <StyledLinkBlue 
-                to="https://test.sertifikatai.vmvt.lt/" 
+                to={import.meta.env.VITE_SERTIFIKATAI_URL}
                 target="_parent"
               >
                 <ButtonContainerBlue>
@@ -38,7 +38,7 @@ const LandingPage = () => {
                 </ButtonContainerBlue>
               </StyledLinkBlue> : null}
               <StyledLinkYellow 
-                to="https://test.export.vmvt.lt/sertifikatai" 
+                to={`${import.meta.env.VITE_EXPORT_URL}sertifikatai`}
                 target="_parent" 
                 theme={{ singleButton: t('certificateIntro.title') !== "Veterinarijos sertifikatų išdavimas" }}
               >
