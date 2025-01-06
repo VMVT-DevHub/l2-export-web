@@ -40,7 +40,7 @@ const LandingPage = () => {
               <StyledLinkYellow 
                 to={`${import.meta.env.VITE_EXPORT_URL}sertifikatai`}
                 target="_parent" 
-                theme={{ singleButton: t('certificateIntro.title') !== "Veterinarijos sertifikatų išdavimas" }}
+                theme={{ singleButton: t('certificateCheck.lng') !== "lt" }}
               >
                 <ButtonContainerYellow>
                   <Icon name={IconName.sertificateInquiry} />

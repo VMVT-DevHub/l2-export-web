@@ -1,9 +1,11 @@
 {
   "certificateCheck": {
+    "lng": "en",
     "title": "Certificate verification",
     "subtitle": "Enter the certificate identification number below to verify the certificate.",
     "check": "Check",
-    "validityInfo": "The search is performed for shipments no older than 1 year."
+    "validityInfo": "The search is performed for shipments no older than 1 year.",
+    "validityWarning": "Certificates, issued after 2025.xx.xx, can be checked here"
   },
   "certificateIntro": {
     "title": "Issuance of Veterinary Certificates",
