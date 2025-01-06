@@ -1,9 +1,11 @@
 {
   "certificateCheck": {
+    "lng": "lt",
     "title": "Sertifikatų tikrinimas",
     "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą.",
     "check": "Tikrinti",
-    "validityInfo": "Paieška vykdoma ne senesnėms siuntoms nei 1 metų."
+    "validityInfo": "Paieška vykdoma ne senesnėms siuntoms nei 1 metų.",
+    "validityWarning": "Šiame puslapyje gali būti tikrinami tik sertifikatai, išduoti po 2025.xx.xx"
   },
   "validation": {
     "required": "Privalomas laukas"

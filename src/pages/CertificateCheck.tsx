@@ -140,10 +140,45 @@ const CertificateCheck = () => {
             )}
           </Formik>
         </CardContent>
+        <WarningContainer>
+          <WarningLabel>
+            {t('certificateCheck.validityWarning')}
+            {t('certificateCheck.lng') == "ru" ? 
+            <StyledLink href="http://vetlt1.vet.lt/exportru/Loginru.aspx">здесь</StyledLink> : ''}
+          </WarningLabel>
+        </WarningContainer>
       </Card>
     </Default>
   );
 };
+
+const StyledLink = styled.a`
+  color:  ${theme.colors.danger};
+  text-decoration: underline;
+  &:visited {
+    color:  ${theme.colors.danger};
+  }
+  &:hover {
+    color: #d10909;  
+  }
+`;
+
+
+const WarningContainer = styled.div`
+  background-color:#ffe2e7;
+  margin-top: 20px;
+  width: 100%;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 16px;
+`;
+
+const WarningLabel = styled(Paragraph)`
+  text-align: center;
+  font-size: 14px;
+  color:  ${theme.colors.danger};
+  font-size: 16px;
+`;
 
 const Card = styled.div`
   display: flex;
