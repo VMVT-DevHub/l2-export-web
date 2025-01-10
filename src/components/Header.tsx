@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from './other/Logo';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   // saving into state, bcs changing lng makes array arrangement to change
   const [languages, _setLanguages] = useState(i18n.languages);
 
+  const handleLanguageChange = (lng: string) => {
+    const currentPath = location.pathname.split('/').slice(2).join('/');
+    navigate(`/${lng}/${currentPath}`);
+    i18n.changeLanguage(lng);
+  };
+  
   return (
     <Wrapper>
       <Logo />
       <div>
         {languages.map((lng) => (
           <LanguageOption
-            onClick={() => i18n.changeLanguage(lng)}
+            onClick={() => handleLanguageChange(lng)}
             key={lng}
             selected={i18n.language === lng}
           >
