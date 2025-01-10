@@ -7,13 +7,17 @@ import { device } from '../styles';
 import { Link } from 'react-router-dom';
 import Icon from '../components/other/Icons'
 import { IconName } from '../utils/constants';
+import landingBackground from '../components/other/images/landingBackground.svg'
+import landingRoad from '../components/other/images/l2LandingPage.jpg'
+import i18n from '../locale/i18n';
 
 const LandingPage = () => {
+  const isLocalHost = import.meta.env.VITE_EXPORT_URL.length == 0 ? true : false;
   const { t } = useTranslation();
   return (
     <PageContainer >
       <BackgroundContainer>
-        <Background src='./landingBackground.svg'/>
+        <Background src={landingBackground}/>
       </BackgroundContainer>
       <Default maxWidth={904} innerWidth={device.mobileXL}>
         <Container>
@@ -38,7 +42,7 @@ const LandingPage = () => {
                 </ButtonContainerBlue>
               </StyledLinkBlue> : null}
               <StyledLinkYellow 
-                to={`${import.meta.env.VITE_EXPORT_URL}sertifikatai`}
+                to={`${import.meta.env.VITE_EXPORT_URL}${!isLocalHost ? i18n.language + '/' : ''}sertifikatai`}
                 target="_parent" 
                 theme={{ singleButton: t('certificateCheck.lng') !== "lt" }}
               >
@@ -54,7 +58,7 @@ const LandingPage = () => {
           </Padding>
         </Container>
         <ImageContainer>
-          <Image src='./l2LandingPage.jpg'/>
+          <Image src={landingRoad}/>
         </ImageContainer>
       </Default>
     </PageContainer>
