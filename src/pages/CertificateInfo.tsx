@@ -1,5 +1,6 @@
 import { Table } from '@aplinkosministerija/design-system';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import AttachedFileBadge from '../components/AttachedFileBadge';
 import GoBackButton from '../components/GoBackButton';
@@ -7,7 +8,7 @@ import Loader from '../components/Loader';
 import { Padding } from '../components/other/Layout';
 import { Heading, Label, Paragraph } from '../components/other/Text';
 import StatusText, { Status } from '../components/StatusText';
-
+import { useTranslation } from 'react-i18next';
 import TransitInfoLine from '../components/TransitInfoLine';
 import Default from '../layouts/Default';
 import { device } from '../styles';
@@ -22,8 +23,22 @@ interface LoadInfo {
 
 const CertificateInfo = () => {
   const location = useLocation();
-  const cert = location.state as Certificate;
   const theme = useTheme();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  
+  useEffect(() => {
+    if (!location.state) {
+      navigate('/');
+      return;
+    }
+  }, [location.state, navigate]);
+  
+  const cert = location.state as Certificate;
+  
+  if (!cert) {
+    return null;
+  }
 
   const { isLoading, data: files } = useCertificateFiles(cert.certificateNumber);
 
