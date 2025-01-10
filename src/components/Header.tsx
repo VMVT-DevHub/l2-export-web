@@ -13,7 +13,9 @@ export const Header = () => {
 
   const handleLanguageChange = (lng: string) => {
     const currentPath = location.pathname.split('/').slice(2).join('/');
-    navigate(`/${lng}/${currentPath}`);
+    navigate(`/${lng}/${currentPath}`, {
+      state: location.state
+    });
     i18n.changeLanguage(lng);
   };
   
