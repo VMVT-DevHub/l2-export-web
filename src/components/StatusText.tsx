@@ -32,7 +32,7 @@ const StatusText: React.FC<Props> = ({ text, status }) => {
 };
 
 const Container = styled.div<{ color?: string }>`
-  padding: 10px;
+  padding: 6px;
   background-color: ${({ theme, color }) => color || theme.colors.danger};
   border-radius: 4px;
 `;

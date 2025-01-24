@@ -1,55 +1,54 @@
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
-import { Padding } from '../components/other/Layout';
-import { Heading, Label, Paragraph } from '../components/other/Text';
-import Default from '../layouts/Default';
-import { device } from '../styles';
 import { Link } from 'react-router-dom';
-import Icon from '../components/other/Icons'
-import { IconName } from '../utils/constants';
-import landingBackground from '../components/other/images/landingBackground.svg'
-import landingRoad from '../components/other/images/l2LandingPage.jpg'
+import styled from 'styled-components';
+import Icon from '../components/other/Icons';
+import landingRoad from '../components/other/images/l2LandingPage.jpg';
+import landingBackground from '../components/other/images/landingBackground.svg';
+import { Padding } from '../components/other/Layout';
+import { Heading, Label } from '../components/other/Text';
+import Default from '../layouts/Default';
 import i18n from '../locale/i18n';
+import { device } from '../styles';
+import { IconName } from '../utils/constants';
 
 const LandingPage = () => {
-  const isLocalHost = import.meta.env.VITE_EXPORT_URL.length == 0 ? true : false;
+  const isLocalHost = import.meta.env.VITE_EXPORT_URL?.length == 0 ? true : false;
   const { t } = useTranslation();
   return (
-    <PageContainer >
+    <PageContainer>
       <BackgroundContainer>
-        <Background src={landingBackground}/>
+        <Background src={landingBackground} />
       </BackgroundContainer>
       <Default maxWidth={904} innerWidth={device.mobileXL}>
         <Container>
           <Padding $top={50}>
             <StyledHeading>{t('certificateIntro.title')}</StyledHeading>
           </Padding>
-          <StyledLabel>{t('certificateIntro.subtitle')}
-          </StyledLabel>
+          <StyledLabel>{t('certificateIntro.subtitle')}</StyledLabel>
           <Padding $top={32}>
             <ButtonContainer>
-              {t('certificateIntro.title') == "Veterinarijos sertifikatų išdavimas" ?
-              <StyledLinkBlue 
-                to={import.meta.env.VITE_SERTIFIKATAI_URL}
+              {t('certificateIntro.title') == 'Veterinarijos sertifikatų išdavimas' ? (
+                <StyledLinkBlue to={import.meta.env.VITE_SERTIFIKATAI_URL} target="_parent">
+                  <ButtonContainerBlue>
+                    <Icon name={IconName.sertificateCheck} />
+                    <ButtonTextContainer>
+                      Prašymų eksporto sertifikatui gauti pateikimas
+                      <Icon name={IconName.continueLight} />
+                    </ButtonTextContainer>
+                  </ButtonContainerBlue>
+                </StyledLinkBlue>
+              ) : null}
+              <StyledLinkYellow
+                to={`${import.meta.env.VITE_EXPORT_URL}${
+                  !isLocalHost ? i18n.language + '/' : ''
+                }sertifikatai`}
                 target="_parent"
-              >
-                <ButtonContainerBlue>
-                  <Icon name={IconName.sertificateCheck} />
-                  <ButtonTextContainer>
-                    Prašymų eksporto sertifikatui gauti pateikimas
-                    <Icon name={IconName.continueLight} />
-                  </ButtonTextContainer>
-                </ButtonContainerBlue>
-              </StyledLinkBlue> : null}
-              <StyledLinkYellow 
-                to={`${import.meta.env.VITE_EXPORT_URL}${!isLocalHost ? i18n.language + '/' : ''}sertifikatai`}
-                target="_parent" 
-                theme={{ singleButton: t('certificateCheck.lng') !== "lt" }}
+                theme={{ singleButton: t('certificateCheck.lng') !== 'lt' }}
               >
                 <ButtonContainerYellow>
                   <Icon name={IconName.sertificateInquiry} />
                   <ButtonTextContainer>
-                  {t('certificateIntro.certificateCheckLink')}
+                    {t('certificateIntro.certificateCheckLink')}
                     <Icon name={IconName.continue} />
                   </ButtonTextContainer>
                 </ButtonContainerYellow>
@@ -58,7 +57,7 @@ const LandingPage = () => {
           </Padding>
         </Container>
         <ImageContainer>
-          <Image src={landingRoad}/>
+          <Image src={landingRoad} />
         </ImageContainer>
       </Default>
     </PageContainer>
@@ -70,7 +69,6 @@ const PageContainer = styled.div`
   overflow-y: hidden;
   @media ${device.mobileL}, (max-height: 650px) {
     overflow-y: scroll;
-
   }
 `;
 const ImageContainer = styled.div`
@@ -94,12 +92,12 @@ const Image = styled.img`
   border-radius: 16px;
 `;
 const BackgroundContainer = styled.div`
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; 
+  z-index: -2;
 `;
 const Background = styled.img`
   object-fit: cover;
@@ -116,12 +114,12 @@ const ButtonTextContainer = styled.div`
   width: 100%;
   gap: 16px;
   svg {
-    flex-shrink: 0; 
+    flex-shrink: 0;
     width: 24px;
-    height: 24px; 
+    height: 24px;
   }
 `;
-  
+
 const StyledLinkBlue = styled(Link)`
   text-decoration: none;
   color: white;
@@ -145,18 +143,18 @@ const ButtonContainer = styled.div`
 
 const StyledLinkYellow = styled(Link)`
   text-decoration: none;
-  color: #192F4E;
+  color: #192f4e;
   font-family: Axiforma;
   font-size: 24px;
   line-height: 32px;
-  width:${props => props.theme.singleButton ? '436px' : '50%'};
+  width: ${(props) => (props.theme.singleButton ? '436px' : '50%')};
   @media ${device.mobileL} {
     width: 90%;
   }
 `;
 const ButtonContainerBlue = styled.div`
-  background-color: #192F4E;
-  padding:32px;
+  background-color: #192f4e;
+  padding: 32px;
   border-radius: 16px;
   min-height: 231px;
   display: flex;
@@ -164,11 +162,11 @@ const ButtonContainerBlue = styled.div`
   justify-content: space-between;
   &:hover {
     background-color: #0e1a2b;
-   }
+  }
 `;
 const ButtonContainerYellow = styled.div`
-  background-color: #FCE28D;
-  padding:32px;
+  background-color: #fce28d;
+  padding: 32px;
   border-radius: 16px;
   min-height: 231px;
   display: flex;
@@ -176,7 +174,7 @@ const ButtonContainerYellow = styled.div`
   justify-content: space-between;
   &:hover {
     background-color: #ffebab;
-   }
+  }
 `;
 const StyledHeading = styled(Heading)`
   font-family: Axiforma;
@@ -202,7 +200,5 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
 `;
 export default LandingPage;
-

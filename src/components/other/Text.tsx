@@ -22,7 +22,6 @@ export const Label = styled.span`
   font-family: Arial;
   font-size: 14px;
   font-weight: 400;
-  line-height: 24px;
   text-align: center;
   color: ${({ theme }) => theme.colors.text.label};
 `;

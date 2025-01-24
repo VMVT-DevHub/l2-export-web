@@ -1,10 +1,4 @@
-import {
-  Button,
-  device,
-  NumericTextField,
-  SelectField,
-  TextField,
-} from '@aplinkosministerija/design-system';
+import { Button, device, SelectField, TextField } from '@aplinkosministerija/design-system';
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -49,7 +43,7 @@ const CertificateCheck = () => {
               countryCode: '',
               year: '',
               certificateNumber: '',
-              grantedNumber: '',
+              blankNumber: '',
             }}
             validationSchema={
               selectedTab === FormTabs.ONE ? validateCheckCertForm : validateCheckCertFormExport
@@ -60,7 +54,7 @@ const CertificateCheck = () => {
                 params: {
                   ...(selectedTab === FormTabs.TWO && values?.year && { year: values.year }),
                   certificateNumber: values.certificateNumber,
-                  grantedNumber: values.grantedNumber,
+                  blankNumber: values.blankNumber,
                 },
               });
               setSubmitting(false);
@@ -105,13 +99,13 @@ const CertificateCheck = () => {
                         error={errors.certificateNumber}
                       />
                     </FieldWrapper>
-                    <FormLabel>/L2 - </FormLabel>
+                    <FormLabel>/EXP - </FormLabel>
                     <FieldWrapper>
-                      <NumericTextField
-                        onChange={(value) => setFieldValue('grantedNumber', value)}
-                        value={values.grantedNumber}
-                        placeholder="123456"
-                        error={errors.grantedNumber}
+                      <TextField
+                        onChange={(value) => setFieldValue('blankNumber', value)}
+                        value={values.blankNumber}
+                        placeholder="xxxxxxx"
+                        error={errors.blankNumber}
                       />
                     </FieldWrapper>
                   </InputWrapper>
@@ -132,9 +126,7 @@ const CertificateCheck = () => {
                   >
                     {t('certificateCheck.check')}
                   </Button>
-                  <DisclaimerLabel>
-                    {t('certificateCheck.validityInfo')}
-                  </DisclaimerLabel>
+                  <DisclaimerLabel>{t('certificateCheck.validityInfo')}</DisclaimerLabel>
                 </FormWrapper>
               </Form>
             )}
@@ -143,8 +135,11 @@ const CertificateCheck = () => {
         <WarningContainer>
           <WarningLabel>
             {t('certificateCheck.validityWarning')}
-            {t('certificateCheck.lng') == "ru" ? 
-            <StyledLink href="http://vetlt1.vet.lt/exportru/Loginru.aspx">здесь</StyledLink> : ''}
+            {t('certificateCheck.lng') == 'ru' ? (
+              <StyledLink href="http://vetlt1.vet.lt/exportru/Loginru.aspx">здесь</StyledLink>
+            ) : (
+              ''
+            )}
           </WarningLabel>
         </WarningContainer>
       </Card>
@@ -153,19 +148,18 @@ const CertificateCheck = () => {
 };
 
 const StyledLink = styled.a`
-  color:  ${theme.colors.danger};
+  color: ${theme.colors.danger};
   text-decoration: underline;
   &:visited {
-    color:  ${theme.colors.danger};
+    color: ${theme.colors.danger};
   }
   &:hover {
-    color: #d10909;  
+    color: #d10909;
   }
 `;
 
-
 const WarningContainer = styled.div`
-  background-color:#ffe2e7;
+  background-color: #ffe2e7;
   margin-top: 20px;
   width: 100%;
   padding: 20px 10px;
@@ -176,7 +170,7 @@ const WarningContainer = styled.div`
 const WarningLabel = styled(Paragraph)`
   text-align: center;
   font-size: 14px;
-  color:  ${theme.colors.danger};
+  color: ${theme.colors.danger};
   font-size: 16px;
 `;
 

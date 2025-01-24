@@ -132,10 +132,11 @@ export const theme: Theme = {
 };
 
 export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
- *{
-  box-sizing: border-box;
- }
-
+  *{
+    box-sizing: border-box;
+    font-family: 'Muli', 'Manrope', sans-serif !important;
+  }
+  
   html { 
     font-size: 62.5%; 
     width: 100vw;

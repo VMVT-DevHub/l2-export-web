@@ -6,7 +6,6 @@ import { Label, Paragraph } from './other/Text';
 interface Props {
   exportCompany: string;
   exportCountry: string;
-  importCompany: string;
   importCountry: string;
 }
 
@@ -25,11 +24,10 @@ const TransitInfoLine: React.FC<Props> = (props) => {
       </MiddleRow>
       <Row>
         <CellLeft>
-          <Paragraph>{props.exportCompany}</Paragraph>
           <Label>{props.exportCountry}</Label>
+          <Paragraph>{props.exportCompany}</Paragraph>
         </CellLeft>
         <CellRight>
-          <Paragraph>{props.importCompany}</Paragraph>
           <Label>{props.importCountry}</Label>
         </CellRight>
       </Row>
@@ -45,12 +43,6 @@ const Container = styled.div`
   color: grey;
   display: grid;
   text-decoration: none;
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 const Row = styled.div`
@@ -89,24 +81,6 @@ const Time = styled.div`
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
-const FishingDate = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  font-size: 20px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.text.primary};
-`;
-
-const FishingWeight = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 20px;
-  font-weight: 700;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.text.primary};
-  gap: 4px;
-`;
-
 const CellLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,6 +90,5 @@ const CellLeft = styled.div`
 const CellRight = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-end;
 `;
