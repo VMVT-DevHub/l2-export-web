@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import i18n from '../locale/i18n';
 import { Certificate, CertificateFile } from '../types';
 import api, { GetCertificate } from './api';
-import i18n from '../locale/i18n';
 
 export const useCheckCertificate = () => {
   const navigate = useNavigate();

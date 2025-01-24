@@ -10,7 +10,7 @@ interface Get {
 export interface GetCertificate extends Omit<Get, 'resource'> {
   params: {
     certificateNumber: string;
-    grantedNumber: string;
+    blankNumber: string;
     year?: string;
     countryCode?: string;
   };
