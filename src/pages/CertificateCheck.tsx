@@ -93,19 +93,19 @@ const CertificateCheck = () => {
                     )}
                     <FieldWrapper>
                       <TextField
-                        onChange={(value) => setFieldValue('certificateNumber', value)}
-                        value={values.certificateNumber}
-                        placeholder="123456"
-                        error={errors.certificateNumber}
+                        onChange={(value) => setFieldValue('blankNumber', value)}
+                        value={values.blankNumber}
+                        placeholder="xxxxxxx"
+                        error={errors.blankNumber}
                       />
                     </FieldWrapper>
                     <FormLabel>/EXP - </FormLabel>
                     <FieldWrapper>
                       <TextField
-                        onChange={(value) => setFieldValue('blankNumber', value)}
-                        value={values.blankNumber}
-                        placeholder="xxxxxxx"
-                        error={errors.blankNumber}
+                        onChange={(value) => setFieldValue('certificateNumber', value)}
+                        value={values.certificateNumber}
+                        placeholder="123456"
+                        error={errors.certificateNumber}
                       />
                     </FieldWrapper>
                   </InputWrapper>
