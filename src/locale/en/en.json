@@ -5,11 +5,32 @@
     "subtitle": "Enter the certificate identification number below to verify the certificate.",
     "check": "Check",
     "validityInfo": "The search is performed for shipments no older than 1 year.",
-    "validityWarning": "Certificates, issued after 2025.xx.xx, can be checked here"
+    "validityWarning": "Only certificates issued from 2025.xx.xx can be checked on this page"
   },
   "certificateIntro": {
     "title": "Issuance of Veterinary Certificates",
     "subtitle": "On this portal you can check the validity of issued certificates",
     "certificateCheckLink": "Validity check of issued certificates"
+  },
+  "certificateInfo":{
+    "back": "Back",
+    "certificate": "Certificate",
+    "certificateForm": "Certificate form",
+    "issued": "Issued",
+    "cancelled": "Cancelled",
+    "issueDate": "Certificate issue date",
+    "issueName": "Issuing person",
+    "issueDepartment": "SFVS district issuing the certificate",
+    "EUDeparture": "Departure from EU BCP",
+    "transport": "Transport",
+    "cargo": "Shipment parts / Cargo",
+    "products": "Products",
+    "HScode": "HS code",
+    "productName": "Product name",
+    "productQuantity": "Product quantity/weight",
+    "units": "Units",
+    "manufacturer": "Producer",
+    "attachments": "Attachments",
+    "none": "none"
   }
 }
