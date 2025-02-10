@@ -59,7 +59,7 @@ const CertificateInfo = () => {
         <GoBackButton />
         <Card>
           <HeadingRow>
-            <Heading>Sertifikatas {cert?.certificateNumber}</Heading>
+            <Heading>{t('certificateInfo.certificate')} {cert?.certificateNumber}</Heading>
             {cert?.status && (
               <StatusText
                 text={cert?.status}
@@ -67,7 +67,7 @@ const CertificateInfo = () => {
               />
             )}
           </HeadingRow>
-          <Date>Sertifikato blankas: {cert.blankNumber || '-'}</Date>
+          <Date>{t('certificateInfo.certificateForm')}: {cert.blankNumber || '-'}</Date>
           <TransitInfoLine
             importCountry={cert?.importCountry?.name || '-'}
             exportCompany={cert?.exporter?.name || '-'}
@@ -76,25 +76,25 @@ const CertificateInfo = () => {
           <GreyCard>
             <CellRow>
               <Cell>
-                <Label>Sertifikato išdavimo data</Label>
+                <Label>{t('certificateInfo.issueDate')}</Label>
                 <Paragraph>{cert?.issueDate || '-'}</Paragraph>
               </Cell>
               <Cell>
-                <Label>Išdavęs asmuo</Label>
+                <Label>{t('certificateInfo.issueName')}</Label>
                 <Paragraph>{cert?.issueName || '-'}</Paragraph>
               </Cell>
               <Cell>
-                <Label>Sertifikatą išduodanti VMVT apygarda</Label>
+                <Label>{t('certificateInfo.issueDepartment')}</Label>
                 <Paragraph>{cert?.issueDepartment || '-'}</Paragraph>
               </Cell>
               <Cell>
-                <Label>Išvykimo iš ES PVP</Label>
+                <Label>{t('certificateInfo.EUDeparture')}</Label>
                 <Paragraph>{cert?.post?.name || cert?.postOther || '-'}</Paragraph>
               </Cell>
             </CellRow>
           </GreyCard>
           <AttachmentsRow>
-            <Title>Transportas:</Title>
+            <Title>{t('certificateInfo.transport')}:</Title>
             <Column>
               {cert?.transporters?.map((transport) => {
                 return (
@@ -111,7 +111,7 @@ const CertificateInfo = () => {
             </Column>
           </AttachmentsRow>
           <AttachmentsRow>
-            <Title>Siuntos dalys / Kroviniai:</Title>
+            <Title>{t('certificateInfo.cargo')}:</Title>
             <Column>
               {cert?.loads?.map((load) => {
                 return (
@@ -130,30 +130,30 @@ const CertificateInfo = () => {
           <Line />
           <TableContainer>
             <FlexStart>
-              <Title>Produktai:</Title>
-              {!mappedProducts.length && <Title>nėra</Title>}
+              <Title>{t('certificateInfo.products')}:</Title>
+              {!mappedProducts.length && <Title>{t('certificateInfo.none')}</Title>}
             </FlexStart>
             {!!mappedProducts.length && (
               <Table
                 columns={{
                   code: {
-                    label: 'KPN kodas',
+                    label: t('certificateInfo.HScode'),
                     show: true,
                   },
                   name: {
-                    label: 'Produkto pavadinimas',
+                    label: t('certificateInfo.productName'),
                     show: true,
                   },
                   quantity: {
-                    label: 'Produkto kiekis/svoris',
+                    label: t('certificateInfo.productQuantity'),
                     show: true,
                   },
                   unit: {
-                    label: 'Vienetai',
+                    label: t('certificateInfo.units'),
                     show: true,
                   },
                   manufacturer: {
-                    label: 'Gamintojas',
+                    label: t('certificateInfo.manufacturer'),
                     show: true,
                   },
                 }}
@@ -166,8 +166,8 @@ const CertificateInfo = () => {
           </TableContainer>
 
           <FileRow>
-            <Title $minWidth={50}>Priedai:</Title>
-            {!isLoading && files?.length === 0 && <Title>nėra</Title>}
+            <Title $minWidth={50}>{t('certificateInfo.attachments')}:</Title>
+            {!isLoading && files?.length === 0 && <Title>{t('certificateInfo.none')}</Title>}
             {isLoading && <Loader color={theme.colors.primary} />}
             {files && files.map((file) => <AttachedFileBadge text={file.name} url={file.url} />)}
           </FileRow>

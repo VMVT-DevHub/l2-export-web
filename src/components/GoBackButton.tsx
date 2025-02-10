@@ -19,7 +19,7 @@ const GoBackButton: React.FC<Props> = ({ goTo = '/' }) => {
       }}
     >
       <Icon name={IconName.backArrow} size={20} color={theme.colors.secondary} />
-      <BackText>Grįžti atgal</BackText>
+      <BackText>{t('certificateInfo.back')}</BackText>
     </Container>
   );
 };

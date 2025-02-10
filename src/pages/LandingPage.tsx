@@ -27,7 +27,7 @@ const LandingPage = () => {
           <StyledLabel>{t('certificateIntro.subtitle')}</StyledLabel>
           <Padding $top={32}>
             <ButtonContainer>
-              {t('certificateIntro.title') == 'Veterinarijos sertifikatų išdavimas' ? (
+              {t('certificateCheck.lng') == 'lt' ? (
                 <StyledLinkBlue to={import.meta.env.VITE_SERTIFIKATAI_URL} target="_parent">
                   <ButtonContainerBlue>
                     <Icon name={IconName.sertificateCheck} />

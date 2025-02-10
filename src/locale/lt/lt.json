@@ -5,7 +5,7 @@
     "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą.",
     "check": "Tikrinti",
     "validityInfo": "Paieška vykdoma ne senesnėms siuntoms nei 1 metų.",
-    "validityWarning": "Šiame puslapyje gali būti tikrinami tik sertifikatai, išduoti po 2025.xx.xx"
+    "validityWarning": "Šiame puslapyje gali būti tikrinami tik sertifikatai išduoti nuo 2025.xx.xx"
   },
   "validation": {
     "required": "Privalomas laukas"
@@ -14,5 +14,26 @@
     "title": "Veterinarijos sertifikatų išdavimas",
     "subtitle": "Šiame portale galite pateikti prašymus eksporto sertifikatui gauti ir patikrinti išduoto sertifikato galiojimą",
     "certificateCheckLink": "Išduotų sertifikatų tikrinimas"
+  },
+  "certificateInfo":{
+    "back": "Grįžti atgal",
+    "certificate": "Sertifikatas",
+    "certificateForm": "Sertifikato blankas",
+    "issued": "Išduotas",
+    "cancelled": "Panaikintas",
+    "issueDate": "Sertifikato išdavimo data",
+    "issueName": "Išdavęs asmuo",
+    "issueDepartment": "Sertifikatą išduodanti VMVT apygarda",
+    "EUDeparture": "Išvykimo iš ES PVP",
+    "transport": "Transportas",
+    "cargo": "Siuntos dalys / Kroviniai",
+    "products": "Produktai",
+    "HScode": "KPN kodas",
+    "productName": "Produkto pavadinimas",
+    "productQuantity": "Produkto kiekis/svoris",
+    "units": "Vienetai",
+    "manufacturer": "Gamintojas",
+    "attachments": "Priedai",
+    "none": "nėra"
   }
 }

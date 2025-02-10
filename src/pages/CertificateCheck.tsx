@@ -126,7 +126,6 @@ const CertificateCheck = () => {
                   >
                     {t('certificateCheck.check')}
                   </Button>
-                  <DisclaimerLabel>{t('certificateCheck.validityInfo')}</DisclaimerLabel>
                 </FormWrapper>
               </Form>
             )}
