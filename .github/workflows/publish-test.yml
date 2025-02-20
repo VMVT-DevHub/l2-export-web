@@ -26,8 +26,8 @@ jobs:
       - name: Build React app
         run: yarn build
         env:
-          VITE_SERTIFIKATAI_URL: https://test.sertifikatai.vmvt.lt/
-          VITE_EXPORT_URL: https://test.export.vmvt.lt/
+          VITE_SERTIFIKATAI_URL: https://sertifikatai.test.vmvt.lt/
+          VITE_EXPORT_URL: https://export.test.vmvt.lt/
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
