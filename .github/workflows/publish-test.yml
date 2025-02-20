@@ -29,6 +29,11 @@ jobs:
           VITE_SERTIFIKATAI_URL: https://sertifikatai.test.vmvt.lt/
           VITE_EXPORT_URL: https://export.test.vmvt.lt/
 
+      - name: Debug env variables
+        run: |
+          echo "VITE_SERTIFIKATAI_URL: $VITE_SERTIFIKATAI_URL"
+          echo "VITE_EXPORT_URL: $VITE_EXPORT_URL"
+
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
