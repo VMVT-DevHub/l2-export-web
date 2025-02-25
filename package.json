@@ -4,7 +4,7 @@
   "private": true,
   "prettier": "@aplinkosministerija/biip-prettier-config",
   "dependencies": {
-    "@aplinkosministerija/design-system": "^1.0.12",
+    "@aplinkosministerija/design-system": "^1.2.18",
     "@reduxjs/toolkit": "^1.8.1",
     "@tanstack/react-query": "^5.32.0",
     "@types/react": "^18.0.3",
@@ -40,7 +40,7 @@
     "serve": "vite preview",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:sarif": "set SARIF_ESLINT_EMBED=true && yarn run lint --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "@aplinkosministerija/eslint-config-biip-react"

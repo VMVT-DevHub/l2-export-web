@@ -13,6 +13,7 @@ import Default from '../layouts/Default';
 import { device } from '../styles';
 import { Certificate } from '../types';
 import { useCertificateFiles } from '../utils/hooks';
+import { format } from 'date-fns';
 
 const CertificateInfo = () => {
   const location = useLocation();
@@ -43,11 +44,11 @@ const CertificateInfo = () => {
           product?.productLevel2 ||
           product?.productLevel1;
         return {
-          name: product?.productName,
+          name: <LongText>{product?.productName || '-'}</LongText>,
           code,
-          manufacturer: product?.manufacturer?.name,
+          manufacturer: <LongText>{product?.manufacturer?.name}</LongText>,
           quantity: product.quantity,
-          unit: product.unit,
+          unit: product.unit?.title,
           packagesAmount: 0,
         };
       })
@@ -59,7 +60,9 @@ const CertificateInfo = () => {
         <GoBackButton />
         <Card>
           <HeadingRow>
-            <Heading>{t('certificateInfo.certificate')} {cert?.certificateNumber}</Heading>
+            <Heading>
+              {t('certificateInfo.certificate')} {cert?.certificateNumber}
+            </Heading>
             {cert?.status && (
               <StatusText
                 text={cert?.status}
@@ -67,7 +70,9 @@ const CertificateInfo = () => {
               />
             )}
           </HeadingRow>
-          <Date>{t('certificateInfo.certificateForm')}: {cert.blankNumber || '-'}</Date>
+          <Date>
+            {t('certificateInfo.certificateForm')}: {cert.blankNumber || '-'}
+          </Date>
           <TransitInfoLine
             importCountry={cert?.importCountry?.name || '-'}
             exportCompany={cert?.exporter?.name || '-'}
@@ -77,7 +82,7 @@ const CertificateInfo = () => {
             <CellRow>
               <Cell>
                 <Label>{t('certificateInfo.issueDate')}</Label>
-                <Paragraph>{cert?.issueDate || '-'}</Paragraph>
+                <Paragraph>{format(cert?.issueDate, 'yyyy-MM-dd') || '-'}</Paragraph>
               </Cell>
               <Cell>
                 <Label>{t('certificateInfo.issueName')}</Label>
@@ -294,6 +299,16 @@ const FileRow = styled.div`
   padding: 20px 0;
   flex-direction: row;
   gap: 8px;
+`;
+
+const LongText = styled.div`
+  display: block;
+  max-width: 250px;
+  width: max-content;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  height: auto;
+  white-space: normal;
 `;
 
 export default CertificateInfo;

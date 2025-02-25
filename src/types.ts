@@ -83,7 +83,11 @@ export interface Certificate extends CommonFields {
     productLevel4: string;
     productLevel4Name: string;
     manufacturer: { id: number; name: string };
-    unit: string;
+    unit: {
+      id: number;
+      title: string;
+      description: string;
+    };
     quantity: number;
     packaging: string;
   }> | null;
