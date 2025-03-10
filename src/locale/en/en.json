@@ -7,6 +7,9 @@
     "validityInfo": "The search is performed for shipments no older than 1 year.",
     "validityWarning": "Only certificates issued from 2025.xx.xx can be checked on this page"
   },
+  "validation": {
+    "required": "required"
+  },
   "certificateIntro": {
     "title": "Issuance of Veterinary Certificates",
     "subtitle": "On this portal you can check the validity of issued certificates",

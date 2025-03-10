@@ -23,14 +23,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Debug env variables
-        env:
-          VITE_SERTIFIKATAI_URL: https://sertifikatai.test.vmvt.lt/
-          VITE_EXPORT_URL: https://export.test.vmvt.lt/
-        run: |
-          echo "VITE_SERTIFIKATAI_URL: $VITE_SERTIFIKATAI_URL"
-          echo "VITE_EXPORT_URL: $VITE_EXPORT_URL"
-
       - name: Build React app
         env:
           VITE_SERTIFIKATAI_URL: https://sertifikatai.test.vmvt.lt/
