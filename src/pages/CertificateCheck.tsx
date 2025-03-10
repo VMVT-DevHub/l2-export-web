@@ -9,8 +9,9 @@ import { Heading, Label, Paragraph } from '../components/other/Text';
 import TabBar from '../components/TabBar';
 import Default from '../layouts/Default';
 import { ButtonVariants, theme } from '../styles';
-import { useCheckCertificate } from '../utils/hooks';
+import { useCheckCertificate, useTranslateFormErrors } from '../utils/hooks';
 import { validateCheckCertForm, validateCheckCertFormExport } from '../utils/validation';
+import i18n from '../locale/i18n';
 
 enum FormTabs {
   ONE = 'ONE',
@@ -22,10 +23,13 @@ const tabs = [
   { key: FormTabs.TWO, label: 'EXPORT.EU.LT' },
 ];
 
+// https://medium.com/code-divoire/how-to-internationalize-a-yup-validation-schema-in-a-react-formik-and-react-i18next-app-689ff3cd978
 const CertificateCheck = () => {
   const { t } = useTranslation();
   const { error, isError, isLoading, mutateAsync: checkCertificate } = useCheckCertificate();
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0].key);
+
+  
 
   return (
     <Default>
@@ -46,7 +50,7 @@ const CertificateCheck = () => {
               blankNumber: '',
             }}
             validationSchema={
-              selectedTab === FormTabs.ONE ? validateCheckCertForm : validateCheckCertFormExport
+              selectedTab === FormTabs.ONE ? validateCheckCertForm() : validateCheckCertFormExport()
             }
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
@@ -60,9 +64,14 @@ const CertificateCheck = () => {
               setSubmitting(false);
             }}
           >
-            {({ values, errors, setFieldValue, isSubmitting }) => (
-              <Form>
-                <FormWrapper>
+            {(formikProps) => {
+              const { values, errors, setFieldValue, isSubmitting } = formikProps;
+              
+              useTranslateFormErrors(formikProps);
+              
+              return (
+                <Form>
+                  <FormWrapper>
                   <InputWrapper>
                     {selectedTab === FormTabs.ONE && (
                       <SmallFieldWrapper>
@@ -127,15 +136,16 @@ const CertificateCheck = () => {
                     {t('certificateCheck.check')}
                   </Button>
                 </FormWrapper>
-              </Form>
-            )}
+                </Form>
+                
+            )}}
           </Formik>
         </CardContent>
         <WarningContainer>
           <WarningLabel>
             {t('certificateCheck.validityWarning')}
-            {t('certificateCheck.lng') == 'ru' ? (
-              <StyledLink href="http://vetlt1.vet.lt/exportru/Loginru.aspx">здесь</StyledLink>
+            {t('certificateCheck.lng') == 'ua' ? (
+              <StyledLink href="http://vetlt1.vet.lt/exportru/Loginru.aspx">тут</StyledLink>
             ) : (
               ''
             )}
