@@ -8,7 +8,7 @@
     "validityWarning": "Only certificates issued from 2025.xx.xx can be checked on this page"
   },
   "validation": {
-    "required": "required"
+    "required": "Required"
   },
   "certificateIntro": {
     "title": "Issuance of Veterinary Certificates",
