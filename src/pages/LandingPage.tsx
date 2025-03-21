@@ -19,7 +19,7 @@ const LandingPage = () => {
       <BackgroundContainer>
         <Background src={landingBackground} />
       </BackgroundContainer>
-      <Default maxWidth={904} innerWidth={device.mobileXL}>
+      <Default maxWidth={900} innerWidth={device.mobileXL}>
         <Container>
           <Padding $top={50}>
             <StyledHeading>{t('certificateIntro.title')}</StyledHeading>
