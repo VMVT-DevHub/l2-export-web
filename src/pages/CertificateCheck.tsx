@@ -23,13 +23,10 @@ const tabs = [
   { key: FormTabs.TWO, label: 'EXPORT.EU.LT' },
 ];
 
-// https://medium.com/code-divoire/how-to-internationalize-a-yup-validation-schema-in-a-react-formik-and-react-i18next-app-689ff3cd978
 const CertificateCheck = () => {
   const { t } = useTranslation();
   const { error, isError, isLoading, mutateAsync: checkCertificate } = useCheckCertificate();
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0].key);
-
-  
 
   return (
     <Default>
@@ -122,7 +119,7 @@ const CertificateCheck = () => {
                     <ErrorBanner
                       text={
                         error.response?.status === 404
-                          ? 'Sertifikatas nerastas. Patikrinkite, ar duomenys įvesti teisingai.'
+                          ? t('certificateCheck.sertificateNotFound')
                           : error?.message
                       }
                     />
@@ -244,7 +241,7 @@ const StyledSelectField = styled(SelectField)`
 `;
 
 const SmallFieldWrapper = styled.div`
-  width: 100px;
+  width: 150px;
   @media ${device.mobileL} {
     width: 100%;
   }
