@@ -5,17 +5,7 @@ import LandingPage from '../pages/LandingPage';
 import i18n from '../locale/i18n';
 import { useEffect } from 'react';
 
-const getBrowserLanguage = () => {
-  const browserLang = navigator.language.split('-')[0]; 
-  const supportedLanguages = Object.keys(i18n.options.resources || {});
-  
-  return supportedLanguages.includes(browserLang) 
-    ? browserLang 
-    : 'lt';
-};
-
-const initialLanguage = getBrowserLanguage();
-i18n.changeLanguage(initialLanguage);
+i18n.changeLanguage('lt');
 
 const LanguageWrapper = ({ params }: { params: { lang: string } }) => {
   useEffect(() => {
