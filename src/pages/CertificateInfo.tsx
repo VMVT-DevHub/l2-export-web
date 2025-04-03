@@ -285,6 +285,7 @@ const Title = styled(Label)<{ $minWidth?: number }>`
   font-weight: 700;
   text-align: left;
   min-width: ${({ $minWidth }) => `${$minWidth || 200}px`};
+  max-width: 200px;
 `;
 
 const FlexStart = styled.div`

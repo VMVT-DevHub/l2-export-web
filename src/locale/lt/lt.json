@@ -10,7 +10,8 @@
   },
   "validation": {
     "required": "Privalomas laukas",
-    "year": "Neteisingi metai"
+    "year": "Neteisingi metai",
+    "number": "Turi būti skaičius"
   },
   "certificateIntro": {
     "title": "Veterinarijos sertifikatų išdavimas",

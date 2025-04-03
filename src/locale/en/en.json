@@ -10,7 +10,8 @@
   },
   "validation": {
     "required": "Required",
-    "year": "Incorrect year"
+    "year": "Incorrect year",
+    "number": "Must be a number"
   },
   "certificateIntro": {
     "title": "Issuance of Veterinary Certificates",
