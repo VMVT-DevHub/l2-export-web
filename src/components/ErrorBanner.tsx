@@ -3,17 +3,19 @@ import styled from 'styled-components';
 
 interface Props {
   text: string;
+  display: boolean;
 }
 
-const ErrorBanner: React.FC<Props> = ({ text }) => {
+const ErrorBanner: React.FC<Props> = ({ text, display }) => {
   return (
-    <Container>
+    <Container $display={display}>
       <Text>{text}</Text>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{$display:boolean}>`
+  display: ${({ $display }) => ($display ? 'block' : 'none')};
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.danger};
   background-color: ${({ theme }) => theme.colors.light.danger};

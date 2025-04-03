@@ -1,6 +1,6 @@
 import { Button, device, SelectField, TextField } from '@aplinkosministerija/design-system';
 import { Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import ErrorBanner from '../components/ErrorBanner';
@@ -9,7 +9,7 @@ import { Heading, Label, Paragraph } from '../components/other/Text';
 import TabBar from '../components/TabBar';
 import Default from '../layouts/Default';
 import { ButtonVariants, theme } from '../styles';
-import { useCheckCertificate, useTranslateFormErrors } from '../utils/hooks';
+import { useCheckCertificate } from '../utils/hooks';
 import { validateCheckCertForm, validateCheckCertFormExport } from '../utils/validation';
 import i18n from '../locale/i18n';
 
@@ -27,6 +27,7 @@ const CertificateCheck = () => {
   const { t } = useTranslation();
   const { error, isError, isLoading, mutateAsync: checkCertificate } = useCheckCertificate();
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0].key);
+  const [displayError, setDisplayError] = useState(true);
 
   return (
     <Default>
@@ -51,6 +52,7 @@ const CertificateCheck = () => {
             }
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
+              setDisplayError(true);
               checkCertificate({
                 params: {
                   ...(selectedTab === FormTabs.TWO && values?.year && { year: values.year }),
@@ -64,7 +66,6 @@ const CertificateCheck = () => {
             {(formikProps) => {
               const { values, errors, setFieldValue, isSubmitting } = formikProps;
               
-              useTranslateFormErrors(formikProps);
               
               return (
                 <Form>
@@ -75,55 +76,67 @@ const CertificateCheck = () => {
                         <StyledSelectField
                           options={['A', 'B', 'LT']}
                           getOptionLabel={(option) => option}
-                          onChange={(value) => setFieldValue('countryCode', value)}
+                          onChange={(value) => (setFieldValue('countryCode', value),setDisplayError(false))}
                           value={values.countryCode}
                           placeholder="xx"
                           error={errors.countryCode}
                           clearable={false}
+                          showError={false}
                         />
+                        {errors.countryCode && <ErrorText>{t(errors.countryCode)}</ErrorText>}
+
                       </SmallFieldWrapper>
                     )}
                     {selectedTab === FormTabs.TWO && (
                       <>
                         <FormLabel>EXPORT.EU.LT</FormLabel>
                         <SmallFieldWrapper>
-                          <TextField
-                            onChange={(value) => setFieldValue('year', value)}
+                          <StyledTextField
+                            onChange={(value) => (setFieldValue('year', value), setDisplayError(false))}
                             value={values.year}
                             placeholder="202x"
                             error={errors.year}
+                            showError={false}
+                            type={'number'}
                           />
+                          {errors.year && <ErrorText>{t(errors.year)}</ErrorText>}
                         </SmallFieldWrapper>
                         <FormLabel>.</FormLabel>
                       </>
                     )}
                     <FieldWrapper>
                       <TextField
-                        onChange={(value) => setFieldValue('blankNumber', value)}
+                        onChange={(value) => (setFieldValue('blankNumber', value), setDisplayError(false))}
                         value={values.blankNumber}
                         placeholder="xxxxxxx"
                         error={errors.blankNumber}
+                        showError={false}
                       />
+                      {errors.blankNumber && <ErrorText>{t(errors.blankNumber)}</ErrorText>}
+
                     </FieldWrapper>
                     <FormLabel>/EXP - </FormLabel>
                     <FieldWrapper>
                       <TextField
-                        onChange={(value) => setFieldValue('certificateNumber', value)}
+                        onChange={(value) => (setFieldValue('certificateNumber', value), setDisplayError(false))}
                         value={values.certificateNumber}
                         placeholder="123456"
                         error={errors.certificateNumber}
+                        showError={false}
                       />
+                      {errors.certificateNumber && <ErrorText>{t(errors.certificateNumber)}</ErrorText>}
                     </FieldWrapper>
                   </InputWrapper>
-                  {isError && (
+                  {isError &&
                     <ErrorBanner
                       text={
                         error.response?.status === 404
                           ? t('certificateCheck.sertificateNotFound')
                           : error?.message
                       }
+                      display={displayError}
                     />
-                  )}
+                  }
                   <Button
                     type="submit"
                     disabled={isSubmitting || isLoading}
@@ -152,6 +165,13 @@ const CertificateCheck = () => {
     </Default>
   );
 };
+
+const ErrorText  = styled.p`
+  margin-top: 3px;
+  color: #FE5B78;
+  font-size: 1.5rem;
+  white-space: nowrap;
+`
 
 const StyledLink = styled.a`
   color: ${theme.colors.danger};
@@ -232,6 +252,20 @@ const FieldWrapper = styled.div`
   flex-grow: 1;
   max-width: 200px;
   max-height: 70px;
+`;
+
+const StyledTextField = styled(TextField)`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
+    background-color: #f4f7fb;
+  }
 `;
 
 const StyledSelectField = styled(SelectField)`
