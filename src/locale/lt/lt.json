@@ -5,7 +5,7 @@
     "subtitle": "Įveskite sertifikato identifikacinį numerį žemiau, kad patikrintumėte sertifikatą.",
     "check": "Tikrinti",
     "validityInfo": "Paieška vykdoma ne senesnėms siuntoms nei 1 metų.",
-    "validityWarning": "Šiame puslapyje gali būti tikrinami tik sertifikatai išduoti nuo 2025.xx.xx",
+    "validityWarning": "Šiame puslapyje gali būti tikrinami tik sertifikatai išduoti nuo 2025.04.07",
     "sertificateNotFound": "Sertifikatas nerastas. Patikrinkite, ar duomenys įvesti teisingai."
   },
   "validation": {
