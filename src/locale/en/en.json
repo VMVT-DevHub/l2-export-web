@@ -5,7 +5,7 @@
     "subtitle": "Enter the certificate identification number below to verify the certificate.",
     "check": "Check",
     "validityInfo": "The search is performed for shipments no older than 1 year.",
-    "validityWarning": "Only certificates issued from 2025.xx.xx can be checked on this page",
+    "validityWarning": "Only certificates issued from 2025.04.07 can be checked on this page",
     "sertificateNotFound": "Certificate  has not been found. Please check if the data is entered correctly."
   },
   "validation": {
