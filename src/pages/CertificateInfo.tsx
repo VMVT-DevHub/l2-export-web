@@ -29,12 +29,11 @@ const CertificateInfo = () => {
   }, [location.state, navigate]);
 
   const cert = location.state as Certificate;
+  const { isLoading, data: files } = useCertificateFiles(cert.certificateNumber);
 
   if (!cert) {
     return null;
   }
-
-  const { isLoading, data: files } = useCertificateFiles(cert.certificateNumber);
 
   const mappedProducts = cert?.products
     ? cert?.products.map((product) => {
@@ -47,7 +46,9 @@ const CertificateInfo = () => {
           name: <LongText>{product?.productName || '-'}</LongText>,
           code,
           manufacturer: <LongText>{product?.manufacturer?.name}</LongText>,
-          quantity: product.quantity,
+          quantity: product.quantity_bruto
+            ? `${product.quantity} neto / ${product.quantity_bruto} bruto`
+            : product.quantity,
           unit: product.unit?.title,
           packagesAmount: 0,
         };
