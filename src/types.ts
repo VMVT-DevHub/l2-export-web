@@ -89,6 +89,7 @@ export interface Certificate extends CommonFields {
       description: string;
     };
     quantity: number;
+    quantity_bruto: number | null;
     packaging: string;
   }> | null;
 }
