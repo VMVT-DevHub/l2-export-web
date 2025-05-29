@@ -37,6 +37,7 @@
     "units": "Vienetai",
     "manufacturer": "Gamintojas",
     "attachments": "Priedai",
-    "none": "Nėra"
+    "none": "Nėra",
+    "status": "Išduotas"
   }
 }

@@ -37,6 +37,7 @@
     "units": "Одиниці",
     "manufacturer": "Виробник",
     "attachments": "Додаток",
-    "none": "Ніхто"
+    "none": "Ніхто",
+    "status": "Видано"
   }
 }

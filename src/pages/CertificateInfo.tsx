@@ -66,7 +66,7 @@ const CertificateInfo = () => {
             </Heading>
             {cert?.status && (
               <StatusText
-                text={cert?.status}
+                text={cert?.status == 'Išduotas' ? t('certificateInfo.status') : cert?.status}
                 status={cert?.status === 'Negaliojantis' ? Status.RED : Status.GREEN}
               />
             )}
