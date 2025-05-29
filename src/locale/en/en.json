@@ -37,6 +37,7 @@
     "units": "Units",
     "manufacturer": "Producer",
     "attachments": "Attachments",
-    "none": "None"
+    "none": "None",
+    "status": "Issued"
   }
 }
