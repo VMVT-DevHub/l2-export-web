@@ -45,7 +45,13 @@ const CertificateInfo = () => {
         return {
           name: <LongText>{product?.productName || '-'}</LongText>,
           code,
-          manufacturer: <LongText>{product?.manufacturer?.name}</LongText>,
+          manufacturer: (
+            <LongText>
+              {product?.manufacturer?.name
+                ? product?.manufacturer?.name
+                : product?.productOriginCountry}
+            </LongText>
+          ),
           quantity: product.quantity_bruto
             ? `${product.quantity} neto / ${product.quantity_bruto} bruto`
             : product.quantity,
