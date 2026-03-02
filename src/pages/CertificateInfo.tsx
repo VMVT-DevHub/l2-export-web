@@ -89,7 +89,9 @@ const CertificateInfo = () => {
             <CellRow>
               <Cell>
                 <Label>{t('certificateInfo.issueDate')}</Label>
-                <Paragraph>{format(cert?.issueDate, 'yyyy-MM-dd') || '-'}</Paragraph>
+                <Paragraph>
+                  {cert?.issueDate ? format(cert?.issueDate, 'yyyy-MM-dd') : '-'}
+                </Paragraph>
               </Cell>
               <Cell>
                 <Label>{t('certificateInfo.issueName')}</Label>
