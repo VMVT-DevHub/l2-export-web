@@ -58,10 +58,17 @@ class Api {
     });
   };
 
-  getCertificateFiles = async ({ id }: { id: string }): Promise<CertificateFile[]> => {
+  getCertificateFiles = async ({
+    id,
+    blankNumber,
+  }: {
+    id: string;
+    blankNumber: string;
+  }): Promise<CertificateFile[]> => {
     return this.get({
       resource: `certificates/files`,
       id,
+      params: { blankNumber },
     });
   };
 }

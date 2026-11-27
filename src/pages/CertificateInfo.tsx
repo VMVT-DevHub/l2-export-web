@@ -29,7 +29,7 @@ const CertificateInfo = () => {
   }, [location.state, navigate]);
 
   const cert = location.state as Certificate;
-  const { isLoading, data: files } = useCertificateFiles(cert.certificateNumber);
+  const { isLoading, data: files } = useCertificateFiles(cert?.certificateNumber, cert?.blankNumber);
 
   if (!cert) {
     return null;
