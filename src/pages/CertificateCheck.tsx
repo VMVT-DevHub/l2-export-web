@@ -9,6 +9,7 @@ import { Heading, Label, Paragraph } from '../components/other/Text';
 import TabBar from '../components/TabBar';
 import Default from '../layouts/Default';
 import { ButtonVariants, theme } from '../styles';
+import { buildBlankNumber, buildCertificateNumber } from '../utils/certificateNumbers';
 import { useCheckCertificate } from '../utils/hooks';
 import { validateCheckCertForm, validateCheckCertFormExport } from '../utils/validation';
 import i18n from '../locale/i18n';
@@ -53,11 +54,18 @@ const CertificateCheck = () => {
             validateOnChange={false}
             onSubmit={(values, { setSubmitting }) => {
               setDisplayError(true);
+              const isExportTab = selectedTab === FormTabs.TWO;
               checkCertificate({
                 params: {
-                  ...(selectedTab === FormTabs.TWO && values?.year && { year: values.year }),
-                  certificateNumber: values.certificateNumber,
-                  blankNumber: values.blankNumber,
+                  ...(isExportTab && values?.year && { year: values.year }),
+                  certificateNumber: buildCertificateNumber(
+                    values.certificateNumber,
+                    isExportTab ? values.year : undefined,
+                  ),
+                  blankNumber: buildBlankNumber(
+                    values.blankNumber,
+                    isExportTab ? { year: values.year } : { countryCode: values.countryCode },
+                  ),
                 },
               });
               setSubmitting(false);
@@ -120,7 +128,7 @@ const CertificateCheck = () => {
                       <TextField
                         onChange={(value) => (setFieldValue('certificateNumber', value), setDisplayError(false))}
                         value={values.certificateNumber}
-                        placeholder="123456"
+                        placeholder="26000000"
                         error={errors.certificateNumber}
                         showError={false}
                       />

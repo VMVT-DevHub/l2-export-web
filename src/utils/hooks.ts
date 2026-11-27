@@ -21,12 +21,14 @@ export const useCheckCertificate = () => {
   });
 };
 
-export const useCertificateFiles = (id: string) => {
+// Uses the certificate and blank numbers returned by the search, so they match the stored values.
+export const useCertificateFiles = (id?: string, blankNumber?: string) => {
   return useQuery<CertificateFile[], AxiosError>({
-    queryKey: ['certificates/files', id],
-    enabled: Boolean(id),
+    queryKey: ['certificates/files', id, blankNumber],
+    enabled: Boolean(id && blankNumber),
     queryFn: () => {
-      return api.getCertificateFiles({ id });
+      // `enabled` guarantees both values are set when this runs
+      return api.getCertificateFiles({ id: id ?? '', blankNumber: blankNumber ?? '' });
     },
   });
 };
